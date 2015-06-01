@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController {
 
@@ -24,6 +25,11 @@ class ViewController: UIViewController {
                             println(avatar_url)
                         }
                     }
+                }
+
+                let swiftyJson = JSON(data!)
+                if let avatar_url = swiftyJson[0]["owner"]["avatar_url"].string {
+                    println(avatar_url)
                 }
         }
     }
