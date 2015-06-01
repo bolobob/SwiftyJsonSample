@@ -16,7 +16,15 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         Alamofire.request(.GET, "https://api.github.com/users/bolobob/starred")
             .responseJSON() { request, response, data, error in
-                println(data)
+                //println(data)
+                if let json = data as? [Dictionary<String, AnyObject>] {
+                    //println(json[0]["owner"])
+                    if let owner = json[0]["owner"] as? Dictionary<String, AnyObject> {
+                        if let avatar_url = owner["avatar_url"] as? String {
+                            println(avatar_url)
+                        }
+                    }
+                }
         }
     }
 
